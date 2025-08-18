@@ -1,0 +1,37 @@
+{
+  "family": "howru-fast-api",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["EC2"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::257976284139:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "fast-api",
+      "image": "257976284139.dkr.ecr.ap-northeast-2.amazonaws.com/howru-fast-api:latest",
+      "essential": true,
+      "portMappings": [
+        { "containerPort": 8000, "hostPort": 8000, "protocol": "tcp" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/fast-api",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -fsS http://localhost:8001/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      },
+      "command": [
+        "python",
+        "analysisTag.py"
+      ]
+    }
+  ]
+}

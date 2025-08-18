@@ -11,7 +11,7 @@
       "image": "257976284139.dkr.ecr.ap-northeast-2.amazonaws.com/howru-fast-api:latest",
       "essential": true,
       "portMappings": [
-        { "containerPort": 8000, "hostPort": 8000, "protocol": "tcp" }
+        { "containerPort": 8001, "hostPort": 8001, "protocol": "tcp" }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",

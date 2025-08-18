@@ -18,7 +18,7 @@ COPY . /app
 
 # Hugging Face Transformers 라이브러리 오프라인 모드 설정
 ENV TRANSFORMERS_OFFLINE=1
-
+ENV TRANSFORMERS_CACHE=/root/.cache/huggingface/hub
 
 
 CMD ["python", "analysisTag.py"]
